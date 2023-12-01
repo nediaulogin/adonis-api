@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  database_live_crud:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=live_crud_db  # Nome do novo banco de dados
+    ports:
+      - 5441:5432
+    volumes:
+      - pg-data-live-crud:/var/lib/postgresql/data
+
+volumes:
+  pg-data-live-crud:
