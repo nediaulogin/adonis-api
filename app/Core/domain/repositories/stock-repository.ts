@@ -4,16 +4,20 @@ import Stock from "App/Models/Stock";
 
 export default class StockRepository implements StockContract {
 	constructor() { }
+	async create(item: item): Promise<any> {
+		const novoItem = await Stock.create(item);
+		return novoItem;
+	}
 	async findAll(): Promise<any[]> {
 		const list = await Stock.all();
 
 
 		return list;
 	}
-	addItem(item: item): Promise<any> {
+	addItem(quantidade): Promise<any> {
 		throw new Error("Method not implemented.");
 	}
-	removeItem(): Promise<any> {
+	removeItem(quantidade): Promise<any> {
 		throw new Error("Method not implemented.");
 	}
 }

@@ -1,12 +1,12 @@
 import { test } from '@japa/runner'
+import Stock from 'App/Models/Stock'
 
 const stockData = {
     name: 'teste',
     descricao: 'teste',
-    quantity: 10,
-    price: 10,
-    category: 'teste',
-    provider: 'teste',
+    preco_compra: 10,
+    preco_venda: 10,
+    quantidade: 10,
 }
 
 
@@ -29,8 +29,14 @@ test.group('Stock Controller', async () => {
         console.log(response.body())
 
         response.assertStatus(200)
+        response.assertBodyContains({ name: 'teste', descricao: 'teste', preco_compra: 10, preco_venda: 10, quantidade: 10, })
+        const id = response.body().id
+        const del = await Stock.find(id)
+        await del?.delete()
 
-    }).skip()
+
+
+    })
     // test('display update procedure', async ({ client }) => {
     // 	const { token } = await loginAndGetToken(client)
     // 	await deleteMany()
