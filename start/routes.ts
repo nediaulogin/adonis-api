@@ -25,7 +25,8 @@ Route.get('/', async () => {
 })
 
 Route.get('/api/stock/list', 'StocksController.index')
-Route.post('/api/stock/store', 'StocksController.store')
+Route.post('/api/stock/', 'StocksController.store')
 Route.get('/api/stock/:id', 'StocksController.show')
 Route.put('/api/stock/:id', 'StocksController.update')
 Route.delete('/api/stock/:id', 'StocksController.destroy')
+Route.put('/api/stock/add', 'StocksController.add')
