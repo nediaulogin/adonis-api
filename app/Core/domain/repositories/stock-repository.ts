@@ -15,14 +15,27 @@ export default class StockRepository implements StockContract {
 		const list = await Stock.all();
 		return list;
 	}
-	addItem(quantidade, name): Promise<any> {
-		const item: Partial<item> = Stock.findByOrFail('name', name);
+	async addItem(quantidade, id): Promise<any> {
+		const item = await Stock.find(id);
 
-		console.log('aiaiaiaiaiaiai');
+		if (!item) {
+			throw new Error('Item não encontrado');
+		}
+		console.log(item.quantidade)
+		// Certifique-se de que 'quantidade' é um número válido
+		const quantidadeValida = parseInt(quantidade);
+		if (isNaN(quantidadeValida)) {
+			throw new Error('Quantidade inválida');
+		}
+
 		const quant = item.quantidade + quantidade;
-		return Stock.query().where('name', name).update({
 
-		})
+
+		if (!isNaN(quant)) {
+			return await Stock.query().where('id', id).update({
+				quantidade: quant
+			});
+		}
 	}
 	removeItem(quantidade): Promise<any> {
 		throw new Error("Method not implemented.");

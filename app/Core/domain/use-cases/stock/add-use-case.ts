@@ -3,7 +3,7 @@ import CasoDeUso from "../../../shared/CasoDeUso";
 
 type addType = {
     quantidade: number,
-    name: string
+    id: any
 
 }
 
@@ -11,9 +11,9 @@ export default class addUseCase implements CasoDeUso<addType, any> {
 
     constructor(private readonly repositorio: StockContract) { }
 
-    async executar({ quantidade, name }: addType): Promise<any> {
+    async executar({ quantidade, id }: addType): Promise<any> {
 
-        return await this.repositorio.addItem(quantidade, name);
+        return await this.repositorio.addItem(quantidade, id);
     }
 
 }

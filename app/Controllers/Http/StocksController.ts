@@ -26,8 +26,9 @@ export default class StocksController {
     return await this.create.executar(item);
   }
   public async add({ request }: HttpContextContract) {
-    const ctx = request.all();
-    return this.addItem.executar(ctx);
+    const ctx = request.params();
+    console.log(ctx)
+    return await this.addItem.executar(ctx);
   }
 
   public async show({ }: HttpContextContract) { }
